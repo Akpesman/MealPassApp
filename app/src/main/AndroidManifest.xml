@@ -30,6 +30,27 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
 
+
+        <activity android:name=".activities.ViewMyItemsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.CartItemDetailsActivity"
+            android:label="Item Details"/>
+        <activity android:name=".activities.CartItemsActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".activities.BuyItemsFromPointsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ShareLoyaltyPointsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.ViewOrderResponseActivity"/>
+        <activity
+            android:name=".activities.ItemsDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.OrderRecommendedFoodActivity"
+            android:label="Order Recommended Food"/>
+
         <activity
             android:name=".activities.MapsActivity"
             android:label="@string/title_activity_maps" />

@@ -9,19 +9,27 @@
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_add_food_item.xml" value="0.25" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_check_delivery_points.xml" value="0.20416666666666666" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_food_seller.xml" value="0.25" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_item_details.xml" value="0.16530797101449277" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_places_list_renter.xml" value="0.21" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_share_loyalty_points.xml" value="0.16530797101449277" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_user.xml" value="0.20416666666666666" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_view_food_item.xml" value="0.10960144927536232" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_view_my_items.xml" value="0.16530797101449277" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_view_order_response.xml" value="0.20416666666666666" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/activity_view_weather.xml" value="0.20416666666666666" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/fragment_accepted_order.xml" value="0.10960144927536232" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.20416666666666666" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/fragment_pending_order.xml" value="0.17300724637681159" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/fragment_rejected_order.xml" value="0.10960144927536232" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/login.xml" value="0.16530797101449277" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/my_items_list.xml" value="0.16530797101449277" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/order_list.xml" value="0.20416666666666666" />
         <entry key="..\:/MealPassApp/app/src/main/res/layout/order_response_list.xml" value="0.33" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/register.xml" value="0.16530797101449277" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/share_points_layout.xml" value="0.16530797101449277" />
+        <entry key="..\:/MealPassApp/app/src/main/res/layout/signup_page.xml" value="0.16530797101449277" />
         <entry key="..\:/MealPassApp/app/src/main/res/menu/bottom_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/MealPassApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
       </map>

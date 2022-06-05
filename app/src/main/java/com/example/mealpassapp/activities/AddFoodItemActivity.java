@@ -228,56 +228,56 @@ public class AddFoodItemActivity extends BaseActivity {
         if(mImageUri !=null && resultUri != null){
             final StorageReference fileref = mStorageRef.child(System.currentTimeMillis() + "." + getExtension(mImageUri));
             mUploadTask =   fileref.putFile(resultUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                 @Override
-                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                     Handler handler = new Handler();
-                     handler.postDelayed(new Runnable() {
-                         @Override
-                         public void run() {
-                         }
-                     }, 500);
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                        }
+                    }, 500);
 
-                     Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
-                     task.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                         @Override
-                         public void onSuccess(Uri uri) {
-                             try {
-                                 String id = mDatabaseRef.push().getKey();
-                                 String cDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+                    Task<Uri> task = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                    task.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            try {
+                                String id = mDatabaseRef.push().getKey();
+                                String cDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-                                 FoodModel item = new FoodModel(id,itemName,itemPrice, itemPoints, itemDiscount, itemCategory, uri.toString() ,FoodSellerActivity.userId,
-                                         FoodSellerActivity.Name,FoodSellerActivity.URI,FoodSellerActivity.token,cDate,delivery,"flag");
-                                 mDatabaseRef.child(id).setValue(item);
-                                 Toast.makeText(getApplicationContext(), "Item Added Successfully" , Toast.LENGTH_LONG).show();
-                                 hideProgressDialog();
+                                FoodModel item = new FoodModel(id,itemName,itemPrice, itemPoints, itemDiscount, itemCategory, uri.toString() ,FoodSellerActivity.userId,
+                                        FoodSellerActivity.Name,FoodSellerActivity.URI,FoodSellerActivity.token,cDate,delivery,"flag");
+                                mDatabaseRef.child(id).setValue(item);
+                                Toast.makeText(getApplicationContext(), "Item Added Successfully" , Toast.LENGTH_LONG).show();
+                                hideProgressDialog();
 
-                                 mImageUri = Uri.EMPTY;
-                                 itemName = "";
+                                mImageUri = Uri.EMPTY;
+                                itemName = "";
 
-                                 mImageUri = Uri.EMPTY;
-                                 resultUri = Uri.EMPTY;
-                             } catch (Exception ex ){
-                             Toast.makeText(getApplicationContext()  , "Error : " + ex.toString() , Toast.LENGTH_LONG).show();
-                         }
-                         }
-                     });
-                 }
-             }).addOnFailureListener(new OnFailureListener() {
-                 @Override
-                 public void onFailure(Exception e) {
-                     Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                     hideProgressDialog();
-                 }
-             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                 @Override
-                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                     double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                 }
-             });
+                                mImageUri = Uri.EMPTY;
+                                resultUri = Uri.EMPTY;
+                            } catch (Exception ex ){
+                                Toast.makeText(getApplicationContext()  , "Error : " + ex.toString() , Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(Exception e) {
+                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    hideProgressDialog();
+                }
+            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                }
+            });
         }
     }
 
-//OnActivityResult() method code
+    //OnActivityResult() method code
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -313,7 +313,7 @@ public class AddFoodItemActivity extends BaseActivity {
         }
     }
 
-//onRequestPermissionsResult() code
+    //onRequestPermissionsResult() code
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

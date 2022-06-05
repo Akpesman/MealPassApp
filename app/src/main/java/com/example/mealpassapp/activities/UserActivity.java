@@ -200,7 +200,12 @@ public class UserActivity extends AppCompatActivity {
         viewResponse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(Connectivity.isConnectedFast(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
+                    Intent intent = new Intent(getApplicationContext() , ViewOrderResponseActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(UserActivity.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
@@ -212,13 +217,23 @@ public class UserActivity extends AppCompatActivity {
         sharePoints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(Connectivity.isConnectedFast(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
+                    Intent intent = new Intent(getApplicationContext() , ShareLoyaltyPointsActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(UserActivity.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         buyItemPoints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(Connectivity.isConnectedFast(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
+                    Intent intent = new Intent(getApplicationContext() , BuyItemsFromPointsActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(UserActivity.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         inbox.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +266,7 @@ public class UserActivity extends AppCompatActivity {
                     othersLoc.setLongitude(user.getLongtitude());
 
                     distance = myLocation.distanceTo(othersLoc)/1000;
-                   // Toast.makeText(UserActivity.this, user.getId()+"  dis : "+distance, Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(UserActivity.this, user.getId()+"  dis : "+distance, Toast.LENGTH_SHORT).show();
                     if(distance<=5 && !userId.equals(user.getId())){
                         usersList.add(user);
                     }
@@ -381,10 +396,10 @@ public class UserActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if(id == R.id.cart){
-
+            startActivity(new Intent(getApplicationContext(), CartItemsActivity.class));
         }
         if (id == R.id.logout) {
-           // startActivity(new Intent(getApplicationContext(), ShowMessage.class));
+            // startActivity(new Intent(getApplicationContext(), ShowMessage.class));
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setMessage("Logout?");
             alert.setCancelable(false);

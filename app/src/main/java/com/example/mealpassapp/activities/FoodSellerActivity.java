@@ -130,7 +130,12 @@ public class FoodSellerActivity extends AppCompatActivity {
         myItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(Connectivity.isConnectedFast(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
+                    Intent intent = new Intent(getApplicationContext() , ViewMyItemsActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(FoodSellerActivity.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -138,8 +143,8 @@ public class FoodSellerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-            super.onBackPressed();
-            finish();
+        super.onBackPressed();
+        finish();
     }
 
     @Override
