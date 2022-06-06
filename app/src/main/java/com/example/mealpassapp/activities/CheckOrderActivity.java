@@ -119,61 +119,61 @@ public class CheckOrderActivity extends BaseActivity {
                 final FoodOrderModel order = orderList.get(i);
                 final String orderId = order.getId();
 
-                    AlertDialog.Builder statusDeleteBuilder = new AlertDialog.Builder(CheckOrderActivity.this);
-                    statusDeleteBuilder.setTitle("Delete ?");
-                    statusDeleteBuilder.setMessage("Are you sure to accept this order?").setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            String response = "";
-                            if(order.getFlag().equals("pending")){
-                                response = "Accepted";
-                            }else if(order.getFlag().equals("pending2")){
-                                response = "Accepted2";
-                            }
-                            String id = dbReforderstatus.push().getKey();
-                            String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
-                            OrderStatusModelClass orderstatusaccept = new OrderStatusModelClass(id, orderId, order.getUserId(), "Accepted",order.getFoodId(), order.getFoodName(),
-                                    order.getFoodPic(), order.getSellerId(), order.getSellerName(), order.getQuantity(), order.getFoodPrice(), order.getDiscount(), date, "provided");
-                            dbReforderstatus.child(id).setValue(orderstatusaccept);
-                            Toast.makeText(getApplicationContext(), "Order Accepted", Toast.LENGTH_LONG).show();
-
-                            FoodOrderModel obj = new FoodOrderModel(order.getId(), order.getFoodName(), order.getFoodId(), order.getFoodPic(),order.getPoints(),order.getSellerId(),
-                                    order.getSellerName(), order.getFoodPrice(), order.getDiscount(), order.getQuantity(), order.getUserId(), order.getUserName(),
-                                    order.getUserPic(), order.getDate(), response, order.getUserToken(), order.isDeliver());
-                            databaseReference.child(order.getId()).setValue(obj);
-
-                            String fcmToken = order.getUserToken();
-
-                            new MyFirebaseInstanceService().sendMessageSingle(CheckOrderActivity.this, fcmToken, "Alert", "Food Seller responded to your order", null);
-
-                            int total = order.getFoodPrice() * order.getQuantity();
-                            addUpPoints(order.getUserId(), response, total);
-
+                AlertDialog.Builder statusDeleteBuilder = new AlertDialog.Builder(CheckOrderActivity.this);
+                statusDeleteBuilder.setTitle("Delete ?");
+                statusDeleteBuilder.setMessage("Are you sure to accept this order?").setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String response = "";
+                        if(order.getFlag().equals("pending")){
+                            response = "Accepted";
+                        }else if(order.getFlag().equals("pending2")){
+                            response = "Accepted2";
                         }
-                    }).setNegativeButton("Reject", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            String id = dbReforderstatus.push().getKey();
-                            String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+                        String id = dbReforderstatus.push().getKey();
+                        String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
-                            OrderStatusModelClass orderstatusaccept = new OrderStatusModelClass(id, orderId, order.getUserId(), "Rejected",order.getFoodId(), order.getFoodName(),
-                                    order.getFoodPic(), order.getSellerId(), order.getSellerName(), order.getQuantity(), order.getFoodPrice(), order.getDiscount(), date, "provided");
-                            dbReforderstatus.child(id).setValue(orderstatusaccept);
-                            Toast.makeText(getApplicationContext(), "Order Rejected", Toast.LENGTH_LONG).show();
+                        OrderStatusModelClass orderstatusaccept = new OrderStatusModelClass(id, orderId, order.getUserId(), "Accepted",order.getFoodId(), order.getFoodName(),
+                                order.getFoodPic(), order.getSellerId(), order.getSellerName(), order.getQuantity(), order.getFoodPrice(), order.getDiscount(), date, "provided");
+                        dbReforderstatus.child(id).setValue(orderstatusaccept);
+                        Toast.makeText(getApplicationContext(), "Order Accepted", Toast.LENGTH_LONG).show();
 
-                            FoodOrderModel obj = new FoodOrderModel(order.getId(), order.getFoodName(), order.getFoodId(), order.getFoodPic(),order.getPoints(),order.getSellerId(),
-                                    order.getSellerName(), order.getFoodPrice(), order.getDiscount(), order.getQuantity(), order.getUserId(), order.getUserName(),
-                                    order.getUserPic(), order.getDate(), "Rejected", order.getUserToken(), order.isDeliver());
-                            databaseReference.child(order.getId()).setValue(obj);
+                        FoodOrderModel obj = new FoodOrderModel(order.getId(), order.getFoodName(), order.getFoodId(), order.getFoodPic(),order.getPoints(),order.getSellerId(),
+                                order.getSellerName(), order.getFoodPrice(), order.getDiscount(), order.getQuantity(), order.getUserId(), order.getUserName(),
+                                order.getUserPic(), order.getDate(), response, order.getUserToken(), order.isDeliver());
+                        databaseReference.child(order.getId()).setValue(obj);
 
-                            String fcmToken = order.getUserToken();
+                        String fcmToken = order.getUserToken();
 
-                            new MyFirebaseInstanceService().sendMessageSingle(CheckOrderActivity.this, fcmToken, "Alert", "Food Seller responded to your order", null);
-                        }
-                    });
-                    AlertDialog dialog2 = statusDeleteBuilder.create();
-                    dialog2.show();
+                        new MyFirebaseInstanceService().sendMessageSingle(CheckOrderActivity.this, fcmToken, "Alert", "Food Seller responded to your order", null);
+
+                        int total = order.getFoodPrice() * order.getQuantity();
+                        addUpPoints(order.getUserId(), response, total);
+
+                    }
+                }).setNegativeButton("Reject", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String id = dbReforderstatus.push().getKey();
+                        String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+
+                        OrderStatusModelClass orderstatusaccept = new OrderStatusModelClass(id, orderId, order.getUserId(), "Rejected",order.getFoodId(), order.getFoodName(),
+                                order.getFoodPic(), order.getSellerId(), order.getSellerName(), order.getQuantity(), order.getFoodPrice(), order.getDiscount(), date, "provided");
+                        dbReforderstatus.child(id).setValue(orderstatusaccept);
+                        Toast.makeText(getApplicationContext(), "Order Rejected", Toast.LENGTH_LONG).show();
+
+                        FoodOrderModel obj = new FoodOrderModel(order.getId(), order.getFoodName(), order.getFoodId(), order.getFoodPic(),order.getPoints(),order.getSellerId(),
+                                order.getSellerName(), order.getFoodPrice(), order.getDiscount(), order.getQuantity(), order.getUserId(), order.getUserName(),
+                                order.getUserPic(), order.getDate(), "Rejected", order.getUserToken(), order.isDeliver());
+                        databaseReference.child(order.getId()).setValue(obj);
+
+                        String fcmToken = order.getUserToken();
+
+                        new MyFirebaseInstanceService().sendMessageSingle(CheckOrderActivity.this, fcmToken, "Alert", "Food Seller responded to your order", null);
+                    }
+                });
+                AlertDialog dialog2 = statusDeleteBuilder.create();
+                dialog2.show();
 
             }
         });

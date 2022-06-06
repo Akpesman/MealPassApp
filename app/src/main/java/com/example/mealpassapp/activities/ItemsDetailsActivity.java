@@ -80,13 +80,21 @@ public class ItemsDetailsActivity extends AppCompatActivity {
         reviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), FoodAllCommentsActivity.class);
+                intent.putExtra("decision", "viewRatings");
+                intent.putExtra("itemId", itemId);
+                startActivity(intent);
             }
         });
         chatting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), ChattingActivity.class);
+                intent.putExtra("id", sellerId);
+                intent.putExtra("fcm", sellerToken);
+                intent.putExtra("firstName",sellerName);
+                intent.putExtra("userPic",sellerPic);
+                startActivity(intent);
             }
         });
     }
@@ -170,41 +178,41 @@ public class ItemsDetailsActivity extends AppCompatActivity {
                     decreaseP.setEnabled(false);
                 }
 
-                    final int itemQuantity = Integer.parseInt(quantityP.getText().toString());
+                final int itemQuantity = Integer.parseInt(quantityP.getText().toString());
 
-                    AlertDialog.Builder confirmationBuilder = new AlertDialog.Builder(ItemsDetailsActivity.this);
-                    confirmationBuilder.setTitle("Confirmation");
-                    confirmationBuilder.setMessage("Are you sure to want place order ?  " + itemQuantity).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                AlertDialog.Builder confirmationBuilder = new AlertDialog.Builder(ItemsDetailsActivity.this);
+                confirmationBuilder.setTitle("Confirmation");
+                confirmationBuilder.setMessage("Are you sure to want place order ?  " + itemQuantity).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                            DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("FoodOrder/");
+                        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("FoodOrder/");
 
-                            int price = Integer.parseInt(itemPrice);
-                            float discount = Float.parseFloat(ItDiscount);
+                        int price = Integer.parseInt(itemPrice);
+                        float discount = Float.parseFloat(ItDiscount);
 
-                            String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-                            String id = dbRef.push().getKey();
-                            FoodOrderModel order = new FoodOrderModel(id,itemName, itemId, ItPic, points, sellerId, sellerName, price,discount, quan, UserActivity.userId,
-                                    UserActivity.userName, UserActivity.URI, date, status, UserActivity.token, isDeliver);
+                        String date = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
+                        String id = dbRef.push().getKey();
+                        FoodOrderModel order = new FoodOrderModel(id,itemName, itemId, ItPic, points, sellerId, sellerName, price,discount, quan, UserActivity.userId,
+                                UserActivity.userName, UserActivity.URI, date, status, UserActivity.token, isDeliver);
 
-                            dbRef.child(id).setValue(order);
-
-
-                            new MyFirebaseInstanceService().sendMessageSingle(ItemsDetailsActivity.this,sellerToken,"Alert", "New Item order", null);
+                        dbRef.child(id).setValue(order);
 
 
-                            Toast.makeText(getApplicationContext(), "Order Placed Successfully", Toast.LENGTH_SHORT).show();
+                        new MyFirebaseInstanceService().sendMessageSingle(ItemsDetailsActivity.this,sellerToken,"Alert", "New Item order", null);
 
-                        }
-                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog dialog = confirmationBuilder.create();
-                    dialog.show();
+
+                        Toast.makeText(getApplicationContext(), "Order Placed Successfully", Toast.LENGTH_SHORT).show();
+
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog dialog = confirmationBuilder.create();
+                dialog.show();
 
             }
         });

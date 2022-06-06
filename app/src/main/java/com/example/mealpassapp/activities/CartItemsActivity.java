@@ -54,25 +54,25 @@ public class CartItemsActivity extends BaseActivity implements Comparator<FoodMo
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.searchmenu, menu);
-            MenuItem searchmenuItem = menu.findItem(R.id.search);
-            SearchView searchView = (SearchView) searchmenuItem.getActionView();
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
+        getMenuInflater().inflate(R.menu.searchmenu, menu);
+        MenuItem searchmenuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchmenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    try {
-                        imageAdapter.getFilter().filter(newText);
-                    }catch (Exception ex){
-                        ex.printStackTrace();
-                    }
-                    return false;
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                try {
+                    imageAdapter.getFilter().filter(newText);
+                }catch (Exception ex){
+                    ex.printStackTrace();
                 }
-            });
+                return false;
+            }
+        });
 
         return true;
     }

@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuyItemsFromPointsActivity extends BaseActivity {
-
     RecyclerView recyclerView ;
     DatabaseReference databaseReference;
     ViewLoyaltyPointsItemListAdapter imageAdapter;
@@ -46,25 +45,25 @@ public class BuyItemsFromPointsActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.searchmenu, menu);
-            MenuItem searchmenuItem = menu.findItem(R.id.search);
-            SearchView searchView = (SearchView) searchmenuItem.getActionView();
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
+        getMenuInflater().inflate(R.menu.searchmenu, menu);
+        MenuItem searchmenuItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchmenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    try {
-                        imageAdapter.getFilter().filter(newText);
-                    }catch (Exception ex){
-                        ex.printStackTrace();
-                    }
-                    return false;
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                try {
+                    imageAdapter.getFilter().filter(newText);
+                }catch (Exception ex){
+                    ex.printStackTrace();
                 }
-            });
+                return false;
+            }
+        });
 
         return true;
     }
@@ -127,7 +126,7 @@ public class BuyItemsFromPointsActivity extends BaseActivity {
                     imageAdapter = new ViewLoyaltyPointsItemListAdapter(BuyItemsFromPointsActivity.this, list);
                     recyclerView.setAdapter(imageAdapter);
                 }else {
-                    tvNoItems.setText("No items found");
+                    tvNoItems.setText("No items found!");
                 }
                 hideProgressDialog();
             }

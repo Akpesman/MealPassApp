@@ -101,20 +101,35 @@ public class FoodSellerActivity extends AppCompatActivity {
         delivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(Connectivity.isConnectedFast(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
+                    Intent intent = new Intent(getApplicationContext() , CheckDeliveryPointsActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(FoodSellerActivity.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(Connectivity.isConnectedFast(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
+                    Intent intent = new Intent(getApplicationContext() , UpdateProfileActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(FoodSellerActivity.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         inbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(Connectivity.isConnectedFast(getApplicationContext()) && Connectivity.isConnectedFast(getApplicationContext())){
+                    Intent intent = new Intent(getApplicationContext() , ChattingListActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(FoodSellerActivity.this, "Check Your Network", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
